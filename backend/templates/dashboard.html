@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Welcome, {{ username }}!</h2>
+<p>You are now logged in. Use the button below to connect your account to the TruthShield Chrome Extension.</p>
+
+<div class="dashboard-actions">
+    <button class="btn-connect" onclick="connectExtension()">Connect Extension</button>
+</div>
+
+<div id="status-msg" style="margin-top:1rem; text-align:center; font-weight:bold;"></div>
+
+<script>
+    const userToken = "{{ token }}";
+    const statusMsg = document.getElementById("status-msg");
+
+    function connectExtension() {
+        if (!userToken) {
+            alert("No token found. Please relogin.");
+            return;
+        }
+
+        // Send token to the content script via window.postMessage
+        // We use a specific targetOrigin or "*" if we trust the context.
+        // Since content script listens to all, we send to window.
+        window.postMessage({ type: "TRUTHSHIELD_AUTH", token: userToken }, "*");
+
+        statusMsg.innerText = "Token sent to extension! check the extension popup.";
+        console.log("Token sent:", userToken);
+    }
+</script>
+{% endblock %}
