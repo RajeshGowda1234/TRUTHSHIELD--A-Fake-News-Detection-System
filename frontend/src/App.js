@@ -1,32 +1,74 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import './App.css';
+
+function Dashboard() {
+  const checkNews = () => {
+    let text = document.getElementById("news").value;
+    
+    fetch("http://127.0.0.1:5000/predict",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({text:text})
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").innerText = data.Prediction;
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("result").innerText = "Error connecting to backend.";
+    });
+  }
+
+  return (
+    <div style={{textAlign:"center", marginTop:"100px", minHeight:"60vh", padding:"20px"}}>
+      <h1>TruthShield Fake News Detection</h1>
+      <textarea 
+        id="news" 
+        rows="6" 
+        cols="60" 
+        placeholder="Enter news text" 
+        style={{padding:"15px", borderRadius:"8px", marginTop:"20px", border:"1px solid #ccc", color:"inherit", background:"rgba(255, 255, 255, 0.05)"}}
+      ></textarea>
+      <br /><br />
+      <button onClick={checkNews} className="btn btn-primary">Check News</button>
+      <h3 id="result" style={{marginTop:"20px", color:"#4f8eff"}}></h3>
+    </div>
+  );
+}
+
+function Landing() {
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Features />
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
+    <Router>
+      <div className="App">
         <Routes>
-          <Route path="/home" element={
-            <>
-              <Hero />
-              <Features />
-              <Footer />
-            </>
-          } />
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<><Landing /><Footer /></>} />
+          <Route path="/login" element={<><Navbar /><Login /><Footer /></>} />
+          <Route path="/signup" element={<><Navbar /><Signup /><Footer /></>} />
+          <Route path="/dashboard" element={<><Navbar /><Dashboard /><Footer /></>} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
