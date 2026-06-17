@@ -11,8 +11,8 @@ import './App.css';
 function Dashboard() {
   const checkNews = () => {
     let text = document.getElementById("news").value;
-    
-    fetch("http://127.0.0.1:5000/predict",{
+
+    fetch("https://truthshield-a-fake-news-detection-system.onrender.com/predict", {
       method:"POST",
       headers:{
         "Content-Type":"application/json"
