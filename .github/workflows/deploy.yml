@@ -25,14 +25,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          
-      - name: Install dependencies and Build
-        # If your React app is in a subdirectory called "truthshield-frontend", keep this as-is.
-        # If your React files are directly in the root of the repo, remove the "cd truthshield-frontend &&" parts.
-        run: |
-          if [ -d "truthshield-frontend" ]; then cd truthshield-frontend; fi
-          npm install
-          npm run build
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./frontend
+
+      - name: Build
+        run: npm run build
+        working-directory: ./frontend
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -40,9 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # If your React app is in a subdirectory, the path should be './truthshield-frontend/build'
-          # If it's in the root, it should be './build'
-          path: './truthshield-frontend/build' 
+          path: './frontend/build'
 
   deploy:
     environment:
