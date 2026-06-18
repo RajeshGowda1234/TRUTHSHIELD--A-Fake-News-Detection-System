@@ -65,9 +65,15 @@ const Hero = () => {
                 <button onClick={handleDownloadClick} className="btn btn-primary btn-lg">
                     <FaChrome className="btn-icon" /> Download Extension
                 </button>
-                <a href="#features" className="btn btn-outline btn-lg">
+                <button 
+                    onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                    }} 
+                    className="btn btn-outline btn-lg"
+                >
                     How it Works <FaArrowRight className="btn-icon-right" />
-                </a>
+                </button>
             </motion.div>
 
             {/* Abstract Background Elements */}
