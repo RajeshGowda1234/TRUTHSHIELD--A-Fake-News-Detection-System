@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/css/main.f12263c2.css",
+    "main.js": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/js/main.898f56a3.js",
+    "static/js/453.e7601c98.chunk.js": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/js/453.e7601c98.chunk.js",
+    "index.html": "/TRUTHSHIELD--A-Fake-News-Detection-System/index.html",
+    "main.f12263c2.css.map": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/css/main.f12263c2.css.map",
+    "main.898f56a3.js.map": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/js/main.898f56a3.js.map",
+    "453.e7601c98.chunk.js.map": "/TRUTHSHIELD--A-Fake-News-Detection-System/static/js/453.e7601c98.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f12263c2.css",
+    "static/js/main.898f56a3.js"
+  ]
+}
