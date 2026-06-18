@@ -5,30 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TruthShield</title>
   <link rel="stylesheet" href="popup.css">
-  <!-- Preconnect for fonts roughly if needed, but using system fonts for speed/reliability in extension -->
 </head>
 <body>
-
   <div class="container">
     <header>
-      <h1>TruthShield</h1>
+      <h1>🛡️ TruthShield</h1>
       <div class="subtitle">AI-Powered Fake News Detector</div>
     </header>
 
     <main>
-      <!-- Initial State / Instructions -->
-      <div id="initialView" class="instructions">
-        <ol>
-          <li>Highlight the news article or text snippet you want to verify.</li>
-          <li>Click the <strong>Analyze</strong> button below.</li>
-        </ol>
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tabSelected">Selected Text</button>
+        <button class="tab-btn" id="tabManual">Manual Input</button>
       </div>
 
-      <!-- Result View (Hidden by default) -->
+      <!-- Selected Text Mode -->
+      <div id="selectedMode">
+        <div id="initialView" class="instructions">
+          <ol>
+            <li>Highlight the news article text you want to verify on the page.</li>
+            <li>Click the <strong>Analyze</strong> button below.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Manual Input Mode -->
+      <div id="manualMode" style="display:none;">
+        <textarea
+          id="manualText"
+          class="manual-textarea"
+          placeholder="Paste news text here to analyze..."
+          rows="5"
+        ></textarea>
+        <div id="manualCharCount" class="char-count">0 / 5000</div>
+      </div>
+
+      <!-- Result View (shared) -->
       <div id="resultView" class="result-card">
         <div class="prediction-label">Analysis Result</div>
         <div id="predictionText" class="prediction-value">--</div>
-        
+
         <div class="confidence-wrapper">
           <div class="confidence-header">
             <span>Confidence Score</span>
@@ -38,12 +55,29 @@
             <div id="confidenceBar" class="progress-fill"></div>
           </div>
         </div>
+
+        <div class="prob-breakdown">
+          <div class="prob-row">
+            <span class="prob-lbl real-lbl">✅ Real</span>
+            <div class="prob-track-mini">
+              <div id="realBar" class="prob-fill-mini real-fill"></div>
+            </div>
+            <span id="realPct" class="prob-pct">0%</span>
+          </div>
+          <div class="prob-row">
+            <span class="prob-lbl fake-lbl">🚫 Fake</span>
+            <div class="prob-track-mini">
+              <div id="fakeBar" class="prob-fill-mini fake-fill"></div>
+            </div>
+            <span id="fakePct" class="prob-pct">0%</span>
+          </div>
+        </div>
       </div>
     </main>
 
     <div class="actions">
       <button id="analyzeBtn" class="btn-primary">
-        <span id="btnText">Analyze Selected Text</span>
+        <span id="btnText">Analyze</span>
         <div id="btnLoader" class="loader"></div>
       </button>
       <div id="status"></div>
