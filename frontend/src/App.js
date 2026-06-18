@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import HomeAnalyzer from './components/HomeAnalyzer';
 import Features from './components/Features';
 import Footer from './components/Footer';
 import Login from './components/Login';
@@ -14,6 +15,7 @@ function Landing() {
         <>
             <Navbar />
             <Hero />
+            <HomeAnalyzer />
             <Features />
         </>
     );

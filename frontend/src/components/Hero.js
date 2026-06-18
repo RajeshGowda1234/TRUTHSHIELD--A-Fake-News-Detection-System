@@ -1,30 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaChrome, FaArrowRight } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
-    const navigate = useNavigate();
-
-    const handleDownloadClick = (e) => {
-        e.preventDefault();
-        const token = localStorage.getItem('token');
-        
-        if (!token) {
-            // User is not logged in, redirect to login page
-            alert("Please log in to download the extension.");
-            navigate('/login');
-        } else {
-            // User is logged in, trigger download
-            const link = document.createElement('a');
-            link.href = '/truthshield-extension.zip';
-            link.download = 'truthshield-extension.zip';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    };
 
     return (
         <section className="hero">
@@ -62,8 +41,14 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
             >
-                <button onClick={handleDownloadClick} className="btn btn-primary btn-lg">
-                    <FaChrome className="btn-icon" /> Download Extension
+                <button 
+                    onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('analyzer-section')?.scrollIntoView({ behavior: 'smooth' });
+                    }} 
+                    className="btn btn-primary btn-lg"
+                >
+                    Analyze News Online <FaArrowRight className="btn-icon-right" />
                 </button>
                 <button 
                     onClick={(e) => {
@@ -72,7 +57,7 @@ const Hero = () => {
                     }} 
                     className="btn btn-outline btn-lg"
                 >
-                    How it Works <FaArrowRight className="btn-icon-right" />
+                    How it Works
                 </button>
             </motion.div>
 
