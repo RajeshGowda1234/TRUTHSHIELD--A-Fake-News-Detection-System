@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TruthShield</title>
+  <link rel="stylesheet" href="popup.css">
+  <!-- Preconnect for fonts roughly if needed, but using system fonts for speed/reliability in extension -->
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>TruthShield</h1>
+      <div class="subtitle">AI-Powered Fake News Detector</div>
+    </header>
+
+    <main>
+      <!-- Initial State / Instructions -->
+      <div id="initialView" class="instructions">
+        <ol>
+          <li>Highlight the news article or text snippet you want to verify.</li>
+          <li>Click the <strong>Analyze</strong> button below.</li>
+        </ol>
+      </div>
+
+      <!-- Result View (Hidden by default) -->
+      <div id="resultView" class="result-card">
+        <div class="prediction-label">Analysis Result</div>
+        <div id="predictionText" class="prediction-value">--</div>
+        
+        <div class="confidence-wrapper">
+          <div class="confidence-header">
+            <span>Confidence Score</span>
+            <span id="confidenceText">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="confidenceBar" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="actions">
+      <button id="analyzeBtn" class="btn-primary">
+        <span id="btnText">Analyze Selected Text</span>
+        <div id="btnLoader" class="loader"></div>
+      </button>
+      <div id="status"></div>
+    </div>
+
+    <footer>
+      Powered by NLP • Predictions are probabilistic
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

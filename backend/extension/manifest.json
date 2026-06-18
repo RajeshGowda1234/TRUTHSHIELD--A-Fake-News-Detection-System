@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "TruthShield Extension",
+    "version": "1.1",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "http://127.0.0.1:5000/*",
+        "http://localhost:5000/*",
+        "https://truthshield-a-fake-news-detection-system.onrender.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://127.0.0.1:5000/*",
+                "http://localhost:5000/*",
+                "https://truthshield-a-fake-news-detection-system.onrender.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon.png",
+            "48": "icon.png",
+            "128": "icon.png"
+        }
+    }
+}

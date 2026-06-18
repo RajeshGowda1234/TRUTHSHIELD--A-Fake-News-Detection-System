@@ -1,0 +1,13 @@
+﻿--- Backend Prediction Tests ---
+Text: The European Central Bank kept interest rates unch...
+Prediction: Real (Conf: 0.96)
+Prob Fake: 0.04, Prob Real: 0.96
+
+Text: Breaking news: New research proves that eating 10 ...
+Prediction: Fake (Conf: 0.54)
+Prob Fake: 0.54, Prob Real: 0.46
+
+Text: The United States Census Bureau is a principal age...
+Prediction: Real (Conf: 0.69)
+Prob Fake: 0.31, Prob Real: 0.69
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthShield</title>
+    <style>
+        body {
+            width: 350px;
+            background-color: #0d1117;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #161b22;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #58a6ff;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin: 5px 0 0 0;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .instructions {
+            font-size: 0.9rem;
+            color: #c9d1d9;
+            margin-bottom: 20px;
+            text-align: left;
+            background: #21262d;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #238636;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2ea043;
+        }
+
+        .btn-blue {
+            background-color: #1f6feb;
+            color: white;
+        }
+
+        .btn-blue:hover {
+            background-color: #388bfd;
+        }
+
+        .btn-secondary {
+            background-color: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #30363d;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 0.7rem;
+            color: #484f58;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            display: none;
+        }
+
+        .error {
+            color: #f85149;
+        }
+
+        .success {
+            color: #3fb950;
+        }
+
+        .warning {
+            color: #d29922;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 class="title">TruthShield</h1>
+        <p class="subtitle">AI-Powered Fake News Detector</p>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" class="content">
+        <p>You need to connect your account first.</p>
+        <a href="https://truthshield-a-fake-news-detection-system.onrender.com/login" target="_blank" class="btn btn-primary"
+            style="text-decoration:none; display:block;">Login & Connect</a>
+    </div>
+
+    <!-- Main App Section -->
+    <div id="app-section" class="content hidden">
+        <div class="instructions">
+            <ol>
+                <li>Highlight the news article or text snippet you want to verify.</li>
+                <li>Click the <strong>Analyze</strong> button below.</li>
+            </ol>
+        </div>
+
+        <button id="analyze-btn" class="btn btn-blue">Analyze Selected Text</button>
+        <div id="loading" class="hidden" style="margin:10px 0;">Analyzing...</div>
+
+        <div id="result-area" class="result-box">
+            <h3 id="prediction-label" style="margin:0 0 10px 0;"></h3>
+            <p id="confidence-score" style="margin:0; font-size:0.9rem;"></p>
+        </div>
+
+        <button id="logout-btn" class="btn btn-secondary" style="margin-top:20px;">Logout</button>
+    </div>
+
+    <div class="footer">
+        Powered by NLP - Predictions are probabilistic
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
